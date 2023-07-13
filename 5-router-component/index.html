@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>路由测试</title>
+    <script src="./router.js"></script>
+    <style>
+        button {
+            margin: 10px;
+            background: rgb(56, 34, 249);
+            border: 1px solid #000;
+            color:#fff;
+            padding: 5px 10px;
+        }
+        button:hover{
+            background: rgb(42, 24, 208);
+        }
+        button:active{
+            background: rgb(28, 14, 167);
+        }
+    </style>
+</head>
+
+<body>
+    <template id="template">
+        <h1><slot name="title"></slot></h1>
+        <p>
+            <slot name="content"></slot>
+        </p>
+    </template>
+    <div>
+        <div style="display: flex;">
+            <div><button onclick="go('home')">home</button></div>
+            <div><button onclick="go('about')">about</button></div>
+        </div>
+        <div>
+            <router-view></router-view>
+        </div>
+        <article-page>
+            <span slot="title">这是标题</span>
+            <span slot="content">这是内容</span>
+        </article-page>
+    </div>
+    <script>
+        class Article extends HTMLElement{
+            constructor(){
+                super();
+                const template = document.getElementById('template');
+                const templateContent = template.content;
+                const shadowRoot = this.attachShadow({mode: 'open'}).appendChild(templateContent.cloneNode(true));
+            }
+        }
+        customElements.define('article-page', Article);
+        
+        // 注册几个组件
+        class Home extends HTMLElement {
+            constructor() {
+                super();
+                this.innerHTML = `<h1>home</h1><p>欢迎大家查看，这里是 Qborfy 前端路由测试首页，如果感兴趣，可以直接到<a href="https://qborfy.com">Qborfy博客</a>查看更多内容</p>`;
+            }
+        }
+
+        class About extends HTMLElement {
+            constructor() {
+                super();
+                this.innerHTML = '<h1>about</h1><p>关于 Qborfy， 主要是记录平时日常的一些学习，也会更新一些不一样的东西，谢谢大家前往查看 <a href="https://qborfy.com">Qborfy博客</a>。</p>';
+            }
+        }
+
+        customElements.define('home-page', Home);
+        customElements.define('about-page', About);
+
+        const router = createRouter([{
+            name: 'home',
+            path: '/',
+            component: 'home-page'
+        }, {
+            name: 'about',
+            path: '/about',
+            component: 'about-page'
+        }], 'hash');
+
+        function go(name) {
+            router.push(name);
+        }
+    </script>
+</body>
+
+</html>

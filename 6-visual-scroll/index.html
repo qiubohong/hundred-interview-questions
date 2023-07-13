@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟滚动测试</title>
+</head>
+
+<body>
+    <div style="position: fixed; top : 0; left:0; padding: 16px; background-color: #f0f0f0; width: 100%;">
+        <button id="add" onclick="add()">添加</button>
+    </div>
+    <div id="scroll" style="border: 1px solid #ccc;margin-top: 60px;height:600px;overflow: auto;"></div>
+    <script src="./scroll.js"></script>
+    <script>
+        const scroll = new Scroll({
+            el: document.getElementById('scroll'),
+            list: [],
+            itemRender: (item)=>{
+                let child = document.createElement('div');
+                child.innerText = `第${item}个div`;
+                return child;
+            }
+        });
+        let sum = 0;
+        const max = 100;
+        function add() {
+            console.log('开始添加 =====================')
+            console.time()
+            for (let i = 0; i < max; i++) {
+                scroll.list.push(i+sum);
+            }
+            console.log('scroll.list', scroll.list)
+            sum += max;
+            scroll.update();
+            console.log('总共节点为：', sum)
+            requestAnimationFrame(() => {
+                console.timeEnd()
+                console.log('添加完成 =====================');
+            })
+        }
+    </script>
+</body>
+
+</html>
