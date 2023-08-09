@@ -1,5 +1,5 @@
 ---
-title: 前端面试100道手写题（2）—— throttle与debounce
+title: 100道前端精品面试题（2）—— throttle与debounce
 date: 2023-04-19 22:00:00
 tags:
     - 学习总结
@@ -8,7 +8,7 @@ tags:
 
 # 背景
 
-前端面试100道手写题第二篇《throttle与debounce》，说一下为什么选这两个，其实大家都有在用，我们先来了解一下两个函数的作用：
+100道前端精品面试题第二篇《throttle与debounce》，说一下为什么选这两个，其实大家都有在用，我们先来了解一下两个函数的作用：
 
 - debounce 防抖，用于减少函数触发的频率，在一个delay时间内，如果触发delay时间归零，直到delay时间到才会触发函数
 - throttle 节流，用于限制函数触发的频率，每个delay时间间隔，最多只能执行函数一次

@@ -1,5 +1,5 @@
 # hundred-interview-questions
-100道面试八股文手写题目
+100道前端精品面试题
 
 
 # 目录
@@ -10,3 +10,4 @@
 4. [第4道，深浅拷贝](./4-deep-clone/README.md)
 5. [第5道，前端Router路由](./5-router-component/README.md)
 6. [第6道，大量数据展示之虚拟滚动](./6-visual-scroll/README.md)
+6. [第7道，循环轮播图](./7-loop-pic/README.md)

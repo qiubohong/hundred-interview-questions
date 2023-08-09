@@ -1,5 +1,5 @@
 ---
-title: 前端面试100道手写题（3）—— EventBus
+title: 100道前端精品面试题（3）—— EventBus
 date: 2023-05-06 22:00:00
 tags:
     - 学习总结
